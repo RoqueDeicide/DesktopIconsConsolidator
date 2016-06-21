@@ -1,0 +1,26 @@
+﻿<Window x:Class="DesktopIconsConsolidator.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopIconsConsolidator"
+        mc:Ignorable="d"
+        Title="About" Height="93.385" Width="300" ResizeMode="NoResize">
+	<Grid>
+		<RichTextBox Margin="8,10,10,10" IsDocumentEnabled="True" IsReadOnly="True">
+			<RichTextBox.Resources>
+				<Style TargetType="Hyperlink">
+					<Setter Property="Cursor" Value="Hand" />
+					<EventSetter Event="Click" Handler="OpenBrowser" />
+				</Style>
+			</RichTextBox.Resources>
+			<FlowDocument>
+				<Paragraph>
+					<Run>This project uses icons from</Run>
+					<Hyperlink NavigateUri="http://p.yusukekamiyamane.com/">Fugue Icons</Hyperlink>
+					<Run>Pack by Yusuke Kamiyamane.</Run>
+				</Paragraph>
+			</FlowDocument>
+		</RichTextBox>
+	</Grid>
+</Window>
