@@ -112,6 +112,29 @@ namespace DesktopIconsConsolidator
 			{
 				Log($"Found {file}.");
 				string dest = Path.Combine(publicDesktop, Path.GetFileName(file) ?? "");
+
+				if (File.Exists(dest))
+				{
+					var result = MessageBox.Show($"The desktop file named {Path.GetFileName(file)} " +
+												 $"already exists in /Public/Desktop/ folder. Overwrite it " +
+												 $"(Yes) or delete one in the user folder (No), or leave " +
+												 $"them both (Cancel) ?",
+												 "File already exists.", MessageBoxButton.YesNoCancel,
+												 MessageBoxImage.Question);
+
+					switch (result)
+					{
+						case MessageBoxResult.Cancel:
+							continue;
+						case MessageBoxResult.Yes:
+							File.Delete(dest);
+							break;
+						case MessageBoxResult.No:
+							File.Delete(file);
+							continue;
+					}
+				}
+
 				Log($"Moved to {dest}.");
 				File.Move(file, dest);
 			}
