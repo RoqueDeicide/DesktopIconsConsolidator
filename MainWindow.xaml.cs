@@ -56,6 +56,8 @@ namespace DesktopIconsConsolidator
 				this.refreshTimer.Stop();
 				this.logClearTimer.Stop();
 			};
+
+			Refresh();
 		}
 
 		private static void Log(string message)
@@ -106,14 +108,12 @@ namespace DesktopIconsConsolidator
 						let ext = Path.GetExtension(file)
 						where ext == ".lnk" || ext == ".url"
 						select file;
-			//var files = desktopFolders.SelectMany
-			//		(folder => Directory.EnumerateFiles(folder, "*.*", SearchOption.TopDirectoryOnly));
 			foreach (var file in files)
 			{
 				Log($"Found {file}.");
 				string dest = Path.Combine(publicDesktop, Path.GetFileName(file) ?? "");
 				Log($"Moved to {dest}.");
-				//File.Move(file, dest);
+				File.Move(file, dest);
 			}
 		}
 
